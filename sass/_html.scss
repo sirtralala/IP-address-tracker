@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: $font-size-basic;
+    font-family: $font-family-rubik;
+}
+
+body {
+    box-sizing: border-box;
+    
+}

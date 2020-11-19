@@ -1,0 +1,313 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  font-size: 112.5%;
+  font-family: "Rubik", sans-serif;
+}
+
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.header {
+  width: 100vw;
+  min-height: 15rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url("../images/pattern-bg.png") no-repeat fixed;
+  background-size: 100% 15rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .header {
+    min-height: 14.4rem;
+    background-size: 100% 14.4rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    min-height: 13.7rem;
+    background-size: 100% 13.7rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .header {
+    min-height: 16rem;
+    background-size: 100% 16rem;
+  }
+}
+
+.header__h1 {
+  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 500;
+  padding-top: 1.5rem;
+}
+
+@media only screen and (max-width: 400px) {
+  .header__h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.header__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50vw;
+  height: 8vh;
+  margin: 1.5rem 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .header__input {
+    width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .header__input {
+    width: 85vw;
+  }
+}
+
+.header__input--field {
+  width: 93%;
+  font-size: 100%;
+  margin-right: auto;
+  padding-left: 1rem;
+  border: none;
+  border-radius: 1rem 0 0 1rem;
+  cursor: pointer;
+}
+
+.header__input--field:focus {
+  outline: none;
+}
+
+.header__input--field::-webkit-input-placeholder {
+  color: #969696;
+}
+
+.header__input--field:-ms-input-placeholder {
+  color: #969696;
+}
+
+.header__input--field::-ms-input-placeholder {
+  color: #969696;
+}
+
+.header__input--field::placeholder {
+  color: #969696;
+}
+
+@media only screen and (max-width: 750px) {
+  .header__input--field::-webkit-input-placeholder {
+    font-size: 70%;
+  }
+  .header__input--field:-ms-input-placeholder {
+    font-size: 70%;
+  }
+  .header__input--field::-ms-input-placeholder {
+    font-size: 70%;
+  }
+  .header__input--field::placeholder {
+    font-size: 70%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .header__input--field::-webkit-input-placeholder {
+    font-size: 60%;
+  }
+  .header__input--field:-ms-input-placeholder {
+    font-size: 60%;
+  }
+  .header__input--field::-ms-input-placeholder {
+    font-size: 60%;
+  }
+  .header__input--field::placeholder {
+    font-size: 60%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .header__input--field {
+    border-radius: .5rem 0 0 .5rem;
+  }
+}
+
+.header__input--btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 3rem;
+  background-color: #2b2b2b;
+  border: none;
+  border-radius: 0 1rem 1rem 0;
+  cursor: pointer;
+}
+
+.header__input--btn:focus {
+  outline: none;
+}
+
+.header__input--btn:hover {
+  background-color: #404040;
+}
+
+@media only screen and (max-width: 400px) {
+  .header__input--btn {
+    border-radius: 0 .5rem .5rem 0;
+  }
+}
+
+.header__results {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80vw;
+  position: absolute;
+  top: 11.2rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border: none;
+  border-radius: .5rem;
+  -webkit-box-shadow: 0 0.4rem 2rem -1rem #969696;
+          box-shadow: 0 0.4rem 2rem -1rem #969696;
+}
+
+@media only screen and (max-width: 700px) {
+  .header__results {
+    width: 90vw;
+    padding: 1rem .5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header__results {
+    width: 96vw;
+    padding: .5rem .2rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .header__results {
+    width: 85vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    top: 9rem;
+    padding: 1rem;
+  }
+}
+
+.header__results--details {
+  height: 4rem;
+  color: #969696;
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 auto auto 0;
+}
+
+.header__results--details:not(:first-child) {
+  padding-left: 1.5rem;
+  border-left: 1.5px solid #d9d9d9;
+}
+
+@media only screen and (max-width: 1100px) {
+  .header__results--details:not(:first-child) {
+    padding-left: 1rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .header__results--details:not(:first-child) {
+    padding-left: .5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header__results--details:not(:first-child) {
+    padding-left: .2rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .header__results--details:not(:first-child) {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .header__results--details {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: .5rem 0 0 0;
+    text-align: center;
+  }
+}
+
+.header__results--result {
+  color: #2b2b2b;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: .5rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media only screen and (max-width: 1100px) {
+  .header__results--result {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header__results--result {
+    font-size: .7rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .header__results--result {
+    font-size: 1rem;
+    margin: .5rem 0;
+  }
+}
+/*# sourceMappingURL=main.css.map */
