@@ -1,0 +1,67 @@
+.searchbar {
+    display: flex;
+    width: 50vw;
+    height: 8vh;
+    margin: 1rem 0;
+
+    @media only screen and (max-width: 600px) {
+        width: 70vw;
+    }
+
+    @media only screen and (max-width: 400px) {
+        width: 85vw;
+    }
+
+    &__input {
+        width: 93%;
+        font-size: 100%;
+        margin-right: auto;
+        padding-left: 1rem;
+        border: none;
+        border-radius: 1rem 0 0 1rem;
+        cursor: pointer;
+        
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $dark-gray;
+
+            @media only screen and (max-width: 750px) {
+                font-size: 70%;
+            }
+
+            @media only screen and (max-width: 350px) {
+                font-size: 60%;
+            }
+        }
+
+        @media only screen and (max-width: 400px) {
+            border-radius: .5rem 0 0 .5rem;
+        }
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        background-color: $very-dark-gray;
+        border: none;
+        border-radius: 0 1rem 1rem 0;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background-color: $very-dark-gray-hover;
+        }
+
+        @media only screen and (max-width: 400px) {
+            border-radius: 0 .5rem .5rem 0;
+        }
+    }
+}

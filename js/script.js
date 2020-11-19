@@ -1,3 +1,38 @@
+// ********************************** map code **********************************
+
+let map;
+let icon = L.icon({
+    iconUrl: '../images/icon-location.svg',
+    iconSize:     [46, 56],
+    iconAnchor:   [22, 94] // [22, 94]
+});
+
+initializeMap = (latitude, longitude) => {
+    map = L.map('map').setView([latitude, longitude], 13);
+    displayMap(latitude, longitude);
+}
+
+displayMap = (latitude, longitude) => {
+    map.setView([latitude, longitude], 13);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: `Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, 
+                      <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,
+                      Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`,
+        maxZoom: 18,
+        id: 'mapbox/streets-v11', // mapbox/satellite-v9
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoic2lydHJhbGFsYSIsImEiOiJja2hvdWEyNXgwZDhvMnNwNXQxYnVwaDIyIn0.EXCPe5q97yPNkMH-0I6hww'
+    }).addTo(map);
+    
+    L.marker([latitude, longitude], {icon: icon}).addTo(map);
+}
+
+// ********************************** end of map code **********************************
+
+
+
 let inputDiv = document.querySelector('#input');
 
 inputDiv.addEventListener('keyup', event => {
@@ -8,70 +43,55 @@ inputDiv.addEventListener('keyup', event => {
     }
 });
 
-
 readInput = () => {
     resetResultsDiv();
     let input = $('#input').val();
-    
-    let request = checkInput(input);
-    console.log('request: ' + request);
-    if (request != null) {
-        getDataFromIpify(request);
+    let apiRequest = checkInput(input);
+    console.log('api request: ' + apiRequest);
+
+    if (apiRequest != null) {
+        getDataFromIpify(apiRequest);
     }
-    
 }
 
-resetResultsDiv = () => {
-    let outputDiv = $('#output');
-    let html = `<div class="header__results" id="output">
-                    <div class="header__results--details">
-                        IP Address
-                        <div id="ip" class="header__results--result"></div>
-                    </div>
-                    <div class="header__results--details">
-                        Location
-                        <div id="location" class="header__results--result"></div>
-                    </div>
-                    <div class="header__results--details">
-                        Timezone
-                        <div id="timezone" class="header__results--result"></div>
-                    </div>
-                    <div class="header__results--details">
-                        ISP
-                        <div id="isp" class="header__results--result"></div>
-                    </div>
-                    </div>
-                </div>`;
-    outputDiv.replaceWith(html);
-}
+checkInput = input => { 
+    let checkIp = new RegExp('^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'+
+                             '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'+ 
+                             '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'+ 
+                             '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$');
 
-checkInput = input => {
-    let checkIp = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-    let checkUrl = /^[a-z][a-z0-9+.-]*:/;
+    let checkUrl = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                              '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                              '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                              '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                              '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                              '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
     if (input.match(checkIp)) {
         return [input, 'ip'];
     }
     else if (input.match(checkUrl)) {
-        return [input, 'url'];
+        return [adjustUrl(input), 'url'];
     }
     else {
-        displayInvalidInput(input);
-        return null; // auch 2 argumente zurückgeben? [null, 'invalid']
+        displayInvalidInput(`Invalid input: "${input}"`);
+        return null;
     }
 }
 
-displayInvalidInput = invalidInput => {
-    let outputDiv = $('#output');
-    let html = `<div class="header__results" id="output">
-                    <div class="header__results--details">
-                        Error occured
-                        <div class="header__results--result">Invalid input: ${invalidInput}<br />Please try again!</div>
-                    </div> 
-                </div>`;
-    outputDiv.replaceWith(html);
-}
+adjustUrl = input => {
+    let startPosition = input.indexOf('//');
+    let endPosition = input.length;
+    let inputWithoutProtocol, pathPosition;
 
+    // check if url contains http protocol - if so, slice it
+    startPosition !== -1 ? startPosition += 2 : startPosition++;
+    inputWithoutProtocol = input.slice(startPosition, endPosition);
+
+    // check if url contains path - if so, slice it
+    pathPosition = inputWithoutProtocol.indexOf('/');
+    return pathPosition !== -1 ? inputWithoutProtocol.slice(0, pathPosition) : inputWithoutProtocol;
+}
 
 getDataFromIpify = (request = ['', 'ip']) => {
     let api_key = 'at_T2nz1Nv8sGqFMRsU3yuVyOOYnTuaC';
@@ -80,10 +100,9 @@ getDataFromIpify = (request = ['', 'ip']) => {
        $.ajax({
            url: 'https://geo.ipify.org/api/v1',
            data: request[1] == 'ip' ? {apiKey: api_key, ipAddress: request[0]} : {apiKey: api_key, domain: request[0]},
-           success: function(data) {
-                // $('body').append('<pre>'+ JSON.stringify(data,'',2)+'</pre>');
-                console.log(data);
+           success: data => {
                 displayData(data);
+                !map ? initializeMap(data.location.lat, data.location.lng) : displayMap(data.location.lat, data.location.lng);
            }
        });
     });
@@ -96,7 +115,50 @@ displayData = data => {
     let isp = $('#isp');
 
     ip_address.text(data.ip);
-    location.html(`${data.location.city}, ${data.location.country}, ${data.location.postalCode}`);
-    timezone.text(data.location.timezone);
+    location.text(data.location.city + ', ' + data.location.country + ', ' + data.location.postalCode);
+    timezone.text('UTC ' + data.location.timezone);
     isp.text(data.isp);
+}
+
+resetResultsDiv = () => {
+    let outputDiv = $('#output');
+    let html = `<div class="results" id="output">
+                    <div class="results__details">
+                        IP Address
+                        <div id="ip" class="results__details--result"></div>
+                    </div>
+                    <div class="results__details">
+                        Location
+                        <div id="location" class="results__details--result"></div>
+                    </div>
+                    <div class="results__details">
+                        Timezone
+                        <div id="timezone" class="results__details--result"></div>
+                    </div>
+                    <div class="results__details">
+                        ISP
+                        <div id="isp" class="results__details--result"></div>
+                    </div>
+                </div>`;
+    outputDiv.replaceWith(html);
+}
+
+
+
+// ********************************** error handling **********************************
+
+$(document).ajaxError( (event, xhr, options) => {
+    let errorMessage = `Error requesting "${$('#input').val()}"<br />Request status: ${xhr.status}, ${xhr.statusText}`;
+    displayInvalidInput(errorMessage);
+});
+
+displayInvalidInput = invalidInput => {
+    let outputDiv = $('#output');
+    let html = `<div class="results" id="output">
+                    <div class="results__details">
+                        Error occured
+                        <div class="results__details--error">${invalidInput}<br />Please try again!</div>
+                    </div> 
+                </div>`;
+    outputDiv.replaceWith(html);
 }

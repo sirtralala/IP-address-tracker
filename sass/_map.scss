@@ -1,0 +1,7 @@
+.map {
+    height: 63vh;
+
+    @media only screen and (max-width: 400px) {
+        height: 60vh;
+    }
+}
