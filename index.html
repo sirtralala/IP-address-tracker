@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="sass/main.css">
   <!-- for production, change to: href="css/style_comp.css" -->
-  
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -22,7 +22,7 @@
     <h1 class="header__h1">IP Address Tracker</h1>
 
     <div class="searchbar">
-      <input type="text" id="input"
+      <input type="text" id="input" title="search"
               placeholder="Search for any IP address or domain" class="searchbar__input">
       <button class="searchbar__button" id="inputButton" onclick="readInput()">
         <img src="/images/icon-arrow.svg" alt="icon arrow">
@@ -68,9 +68,6 @@
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin="">
   </script>
-
-  <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
 
   <script src="./js/script.js"></script>
   <script>( () => { getDataFromIpify(); })();</script>

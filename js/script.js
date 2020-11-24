@@ -168,7 +168,7 @@ displayInvalidInput = invalidInput => {
     let html = `<div class="results" id="output">
                     <div class="results__details">
                         Error occured
-                        <div class="results__details--error">${invalidInput}<br />Please try again!</div>
+                        <div class="results__details--error">${invalidInput}<br />Please try again and/or disable your ad blocker!</div>
                     </div> 
                 </div>`;
     outputDiv.replaceWith(html);
