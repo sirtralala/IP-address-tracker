@@ -373,4 +373,37 @@ body {
     height: 60vh;
   }
 }
+
+.toggle-mapstyle {
+  position: absolute;
+  bottom: 3rem;
+  left: 1rem;
+  padding: .5rem;
+  color: white;
+  background-color: #2b2b2b;
+  border: none;
+  border-radius: .5rem;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.toggle-mapstyle:focus {
+  outline: none;
+}
+
+.toggle-mapstyle:hover {
+  background-color: #404040;
+}
+
+@media only screen and (max-width: 1000px) {
+  .toggle-mapstyle {
+    bottom: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .toggle-mapstyle {
+    bottom: 1rem;
+  }
+}
 /*# sourceMappingURL=main.css.map */

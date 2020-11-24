@@ -5,3 +5,32 @@
         height: 60vh;
     }
 }
+
+.toggle-mapstyle {
+    position: absolute;
+    bottom: 3rem;
+    left: 1rem;
+    padding: .5rem;
+    color: white;
+    background-color: $very-dark-gray;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    z-index: 1000;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background-color: $very-dark-gray-hover;
+    }
+
+    @media only screen and (max-width: 1000px) {
+        bottom: 1.5rem;
+    }
+
+    @media only screen and (max-width: 400px) {
+        bottom: 1rem;
+    }
+}

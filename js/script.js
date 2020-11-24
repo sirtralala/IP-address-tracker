@@ -1,10 +1,10 @@
 // ********************************** map code **********************************
 
-let map;
+let map, marker, mapStyle = 'mapbox/streets-v11'; 
 let icon = L.icon({
     iconUrl: '../images/icon-location.svg',
-    iconSize:     [46, 56],
-    iconAnchor:   [22, 94] // [22, 94]
+    iconSize:     [48, 56],
+    iconAnchor:   [22, 94]
 });
 
 initializeMap = (latitude, longitude) => {
@@ -14,29 +14,40 @@ initializeMap = (latitude, longitude) => {
 
 displayMap = (latitude, longitude) => {
     map.setView([latitude, longitude], 13);
+    setMapStyle();
+    setMarker(latitude, longitude);
+}
 
+setMapStyle = (toggle = false) => {
+    if (toggle) {
+        mapStyle === 'mapbox/streets-v11' ? mapStyle = 'mapbox/satellite-v9' : mapStyle = 'mapbox/streets-v11';
+    }
+    
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: `Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, 
-                      <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,
-                      Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`,
+                    <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,
+                    Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`,
         maxZoom: 18,
-        id: 'mapbox/streets-v11', // mapbox/satellite-v9
+        id: mapStyle,
         tileSize: 512,
         zoomOffset: -1,
         accessToken: 'pk.eyJ1Ijoic2lydHJhbGFsYSIsImEiOiJja2hvdWEyNXgwZDhvMnNwNXQxYnVwaDIyIn0.EXCPe5q97yPNkMH-0I6hww'
     }).addTo(map);
-    
-    L.marker([latitude, longitude], {icon: icon}).addTo(map);
+}
+
+setMarker = (latitude, longitude) => {
+    if (marker) {
+        map.removeLayer(marker);
+    }
+    marker = new L.marker([latitude, longitude], {icon: icon}).addTo(map);
 }
 
 // ********************************** end of map code **********************************
 
 
-
+// listen to 'Enter press' at search input
 let inputDiv = document.querySelector('#input');
-
 inputDiv.addEventListener('keyup', event => {
-    // if ('Enter' was pressed)
     if (event.keyCode === 13) {
         event.preventDefault();
         document.querySelector('#inputButton').click();
@@ -47,7 +58,6 @@ readInput = () => {
     resetResultsDiv();
     let input = $('#input').val();
     let apiRequest = checkInput(input);
-    console.log('api request: ' + apiRequest);
 
     if (apiRequest != null) {
         getDataFromIpify(apiRequest);
