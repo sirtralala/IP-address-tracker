@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile:sass": "node-sass sass/main.scss css/style.css",
-    "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" css/style.css -o css/style.prefix.css",
+    "prefix:css": "postcss --use autoprefixer -b \"last 8 versions\" css/style.css -o css/style.prefix.css",
     "compress:css": "node-sass css/style.prefix.css css/style_comp.css --ouptut-style compressed",
     "build:css": "npm-run-all compile:sass prefix:css compress:css"
   },
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/sirtralala/IP-address-tracker#readme",
   "devDependencies": {
-    "autoprefixer": "^10.0.2",
+    "autoprefixer": "<10.0.0",
     "node-sass": "^5.0.0",
     "postcss-cli": "^8.3.0"
   },

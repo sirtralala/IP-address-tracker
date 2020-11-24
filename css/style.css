@@ -1,0 +1,225 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 112.5%;
+  font-family: "Rubik", sans-serif; }
+
+body {
+  box-sizing: border-box; }
+
+.attribution {
+  font-size: 70%;
+  text-align: center;
+  margin-top: .5rem; }
+  .attribution a {
+    color: #3e52a3; }
+
+.header {
+  width: 100vw;
+  min-height: 13rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("../images/pattern-bg.png") no-repeat fixed;
+  background-size: 100% 13rem; }
+  @media only screen and (max-width: 800px) {
+    .header {
+      min-height: 12.7rem;
+      background-size: 100% 12.7rem; } }
+  @media only screen and (max-width: 700px) {
+    .header {
+      min-height: 12.4rem;
+      background-size: 100% 12.4rem; } }
+  @media only screen and (max-width: 600px) {
+    .header {
+      min-height: 11.7rem;
+      background-size: 100% 11.7rem; } }
+  @media only screen and (max-width: 400px) {
+    .header {
+      min-height: 14rem;
+      background-size: 100% 14rem; } }
+  .header__h1 {
+    color: #ffffff;
+    font-size: 2.2rem;
+    font-weight: 500;
+    padding-top: 1rem; }
+    @media only screen and (max-width: 800px) {
+      .header__h1 {
+        font-size: 2rem; } }
+    @media only screen and (max-width: 700px) {
+      .header__h1 {
+        font-size: 1.8rem; } }
+    @media only screen and (max-width: 600px) {
+      .header__h1 {
+        font-size: 1.6rem; } }
+
+.searchbar {
+  display: flex;
+  width: 50vw;
+  height: 8vh;
+  margin: 1rem 0; }
+  @media only screen and (max-width: 600px) {
+    .searchbar {
+      width: 70vw; } }
+  @media only screen and (max-width: 400px) {
+    .searchbar {
+      width: 85vw; } }
+  .searchbar__input {
+    width: 93%;
+    font-size: 100%;
+    margin-right: auto;
+    padding-left: 1rem;
+    border: none;
+    border-radius: 1rem 0 0 1rem;
+    cursor: pointer; }
+    .searchbar__input:focus {
+      outline: none; }
+    .searchbar__input::placeholder {
+      color: #969696; }
+      @media only screen and (max-width: 750px) {
+        .searchbar__input::placeholder {
+          font-size: 70%; } }
+      @media only screen and (max-width: 350px) {
+        .searchbar__input::placeholder {
+          font-size: 60%; } }
+    @media only screen and (max-width: 400px) {
+      .searchbar__input {
+        border-radius: .5rem 0 0 .5rem; } }
+  .searchbar__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    background-color: #2b2b2b;
+    border: none;
+    border-radius: 0 1rem 1rem 0;
+    cursor: pointer; }
+    .searchbar__button:focus {
+      outline: none; }
+    .searchbar__button:hover {
+      background-color: #404040; }
+    @media only screen and (max-width: 400px) {
+      .searchbar__button {
+        border-radius: 0 .5rem .5rem 0; } }
+
+.results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  position: absolute;
+  top: 9.5rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border: none;
+  border-radius: .5rem;
+  box-shadow: 0 0.4rem 2rem -1rem #969696;
+  z-index: 1000; }
+  @media only screen and (max-width: 800px) {
+    .results {
+      top: 9.1rem; } }
+  @media only screen and (max-width: 700px) {
+    .results {
+      width: 90vw;
+      top: 9rem;
+      padding: 1rem .5rem; } }
+  @media only screen and (max-width: 600px) {
+    .results {
+      top: 8.5rem; } }
+  @media only screen and (max-width: 400px) {
+    .results {
+      width: 85vw;
+      flex-direction: column;
+      top: 7rem;
+      padding: 1rem; } }
+  .results__details {
+    height: 4rem;
+    color: #969696;
+    font-size: .6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 auto auto 0;
+    padding-right: .5rem; }
+    .results__details:not(:first-child) {
+      padding-left: 1.2rem;
+      border-left: 1.5px solid #d9d9d9; }
+      @media only screen and (max-width: 1100px) {
+        .results__details:not(:first-child) {
+          padding-left: 1rem; } }
+      @media only screen and (max-width: 900px) {
+        .results__details:not(:first-child) {
+          padding-left: .5rem; } }
+      @media only screen and (max-width: 600px) {
+        .results__details:not(:first-child) {
+          padding-left: .2rem; } }
+      @media only screen and (max-width: 400px) {
+        .results__details:not(:first-child) {
+          padding-left: 0;
+          border-left: none; } }
+    @media only screen and (max-width: 400px) {
+      .results__details {
+        height: fit-content;
+        margin: .5rem 0 0 0;
+        padding-right: 0;
+        text-align: center; } }
+    .results__details--result {
+      color: #2b2b2b;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: .5rem;
+      text-transform: none;
+      letter-spacing: 0; }
+      @media only screen and (max-width: 1100px) {
+        .results__details--result {
+          font-size: 1rem; } }
+      @media only screen and (max-width: 600px) {
+        .results__details--result {
+          font-size: .7rem; } }
+      @media only screen and (max-width: 400px) {
+        .results__details--result {
+          font-size: 1rem;
+          margin: .5rem 0; } }
+    .results__details--error {
+      color: #2b2b2b;
+      font-size: 150%;
+      font-weight: 500;
+      margin-top: .5rem;
+      text-transform: none;
+      letter-spacing: 0; }
+      @media only screen and (max-width: 900px) {
+        .results__details--error {
+          word-wrap: break-word; } }
+
+.map {
+  height: 63vh; }
+  @media only screen and (max-width: 400px) {
+    .map {
+      height: 60vh; } }
+
+.toggle-mapstyle {
+  position: absolute;
+  bottom: 3rem;
+  left: 1rem;
+  padding: .5rem;
+  color: white;
+  background-color: #2b2b2b;
+  border: none;
+  border-radius: .5rem;
+  cursor: pointer;
+  z-index: 1000; }
+  .toggle-mapstyle:focus {
+    outline: none; }
+  .toggle-mapstyle:hover {
+    background-color: #404040; }
+  @media only screen and (max-width: 1000px) {
+    .toggle-mapstyle {
+      bottom: 1.5rem; } }
+  @media only screen and (max-width: 400px) {
+    .toggle-mapstyle {
+      bottom: 1rem; } }

@@ -45,6 +45,7 @@ setMarker = (latitude, longitude) => {
 // ********************************** end of map code **********************************
 
 
+
 // listen to 'Enter press' at search input
 let inputDiv = document.querySelector('#input');
 inputDiv.addEventListener('keyup', event => {
